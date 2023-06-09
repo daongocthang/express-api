@@ -1,8 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import models from './models';
-import routes from './routes';
+import models from './src/models';
+import routes from './src/routes';
+import dotenv from 'dotenv';
 
+dotenv.config({ path: __dirname + '/.env.sample' });
 const app = express();
 
 app.use(cors());
@@ -24,7 +26,7 @@ app.get('/', (req, res) => {
 
 routes(app);
 
-const PORT = 3000;
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

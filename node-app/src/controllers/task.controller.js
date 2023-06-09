@@ -3,7 +3,7 @@ import models from '../models';
 
 const create = (req, res) => {
     if (!req.body.title) {
-        res.status(400).spend({ message: 'Content cannot be empty.' });
+        res.status(400).send({ message: 'Content cannot be empty.' });
         return;
     }
 
@@ -17,7 +17,7 @@ const create = (req, res) => {
             res.send(data);
         })
         .catch((err) => {
-            res.status(500).spend({ message: err.message || 'Some errors occurred while creating a task.' });
+            res.status(500).send({ message: err.message || 'Some errors occurred while creating a task.' });
         });
 };
 const findAll = (req, res) => {
@@ -26,7 +26,7 @@ const findAll = (req, res) => {
     models.Task.findAll({ where: condition })
         .then((data) => res.send(data))
         .catch((err) => {
-            res.status(500).spend({ message: err.message || 'Some errors occurred while retrieving tasks.' });
+            res.status(500).send({ message: err.message || 'Some errors occurred while retrieving tasks.' });
         });
 };
 const findOne = (req, res) => {
@@ -37,11 +37,11 @@ const findOne = (req, res) => {
             if (data) {
                 res.send(data);
             } else {
-                res.status(404).spend({ message: `Not found task with id=${id}` });
+                res.status(404).send({ message: `Not found task with id=${id}` });
             }
         })
         .catch((err) => {
-            res.status(500).spend({ message: err.message || `Error retrieving task with id=${id}` });
+            res.status(500).send({ message: err.message || `Error retrieving task with id=${id}` });
         });
 };
 const update = (req, res) => {
@@ -56,7 +56,7 @@ const update = (req, res) => {
             }
         })
         .catch((err) => {
-            res.status(500).spend({
+            res.status(500).send({
                 message: err.message || `Error updating task with id=${id}. Maybe task was not found or empty.`,
             });
         });
@@ -73,7 +73,7 @@ const deleteOne = (req, res) => {
             }
         })
         .catch((err) => {
-            res.status(500).spend({
+            res.status(500).send({
                 message: err.message || `Cannot delete task with id=${id}. Maybe task was not found.`,
             });
         });
@@ -84,7 +84,7 @@ const deleteAll = (req, res) => {
             res.send({ message: `${num} tasks deleted successfully.` });
         })
         .catch((err) => {
-            res.status(500).spend({
+            res.status(500).send({
                 message: err.message || `Some errors occurred while deleting all tasks.`,
             });
         });
