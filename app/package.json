@@ -4,7 +4,7 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "test": "nodemon --exec babel-node test.js",
+        "test": "exit 1",
         "start": "nodemon --exec babel-node server.js"
     },
     "repository": {

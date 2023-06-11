@@ -2,9 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import models from './src/models';
 import routes from './src/routes';
-import dotenv from 'dotenv';
 
-dotenv.config({ path: __dirname + '/.env.sample' });
 const app = express();
 
 app.use(cors());
